@@ -1,4 +1,4 @@
-let baseUrl = "https://dull-jade-tuna-gown.cyclic.app/calvin/data";
+let baseUrl = window.location.hostname +  "/calvin/data";
 let options = {
   method: "GET",
   header: { "Content-Type": "application/json" },
