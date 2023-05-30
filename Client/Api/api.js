@@ -1,4 +1,4 @@
-let baseUrl = window.location.hostname +  "/calvin/data";
+let baseUrl =  "http://localhost5000/calvin/data";
 let options = {
   method: "GET",
   header: { "Content-Type": "application/json" },
