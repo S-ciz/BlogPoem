@@ -13,7 +13,7 @@ const { log } = require("console");
 //use body parser
 app.use(bodyParser.json());
 
-//use cors
+use cors
 //app.use(cors());
 
 //static folder
