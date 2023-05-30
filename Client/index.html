@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calvin's BlogPosts</title>
+    <link rel="icon" type="image/png" href="img/sunset.jpeg"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./styles/index.css">
+  
+</head>
+<body>
+
+    <div class="showcase">
+        <div class="display"> </div>
+    </div>
+
+    
+        <header class="navbar">
+            <ul class="logo"> <div style="color: white; display: flex; gap: 1rem; font-weight: bold; place-items: center;"> <img src="./img/sunset.jpeg" alt=""> <span class="active"> Calvin  </span> </div></ul>
+
+            <ul style="display:none" class="list">
+                <li><a style="color: var(--blue-dark-2);" href="index.html">Home</a></li>
+                <li><a href="/pages/blogs.html">Blogs</a></li>
+                <li><a href="/pages/poem.html">Poetry</a></li>
+                <li><a href="./pages/signIn.html">Admin</a></li>
+            </ul>
+           <ul class="bar">
+            <i onclick="toggleBar()" style="color:white;cursor: pointer;" class="fa fa-bars fa-2x"></i>
+           </ul>
+            <ul  id="toggle" style="color: #fff;" class="menu"> <i onclick="()=>{alert('clicked...') }" class="fa fa-bars fa-2x"></i> </ul>
+        
+        </header>
+
+<section class="additions">
+   
+    <div class="container"> 
+       <h1>Rhymes and Reflections: <br> A <span class="active">Poetry</span> and Lifestyle <span class="active">Blog</span></h1>
+    <div class="cards"> <!--cards will display here--> </div>
+</section>
+   
+<section style="background: none; display: flex; gap: 1rem;" class="hero">
+  
+    <div class="sec">
+        <img src="./img/design.jpeg" alt="">
+    </div>
+    <div class="sec">
+        <img src="./img/coudHouse.jpeg" alt="">
+    </div>
+    <div class="sec">
+        <img src="./img/poetryidea.jpeg" alt="">
+    </div>
+
+</section> 
+
+<section class="hero">
+  
+    <div class="sec">
+        <img src="./img/girl.jpeg" alt="">
+    </div>
+<div class="first">
+    <h1 style="font-size: 30px;" class="active">Welcome!</h1>
+    <p style="color: #333;">
+        We are so glad you found us. On our blog, you will find a variety of articles covering a range of topics, from current events and news to personal stories and opinions. </p>
+       </p>
+    <div class="boxes">
+        <div class="box"> 
+            <p>Poetry</p>
+        </div>
+        
+        <div class="box"> 
+            <p>Lifestyle</p>
+        </div>
+        <div class="box"> 
+            <p>Blogs</p>
+        </div>
+    </div>
+   
+    <p style="color: #333;">
+        We strive to provide high-quality, thought-provoking content that engages and informs our readers. Whether you are looking for something to read during your morning commute or a deep dive into a particular subject, we have something for everyone.
+    </p>
+     <br>
+    <button style="border-radius: 1rem;">Explore Blogs Today <i class="fa fa-arrow-right"></i></button>
+</div>
+
+</section> 
+
+<div class="projects">
+    
+    <h1 id="poetry" >Recent Poetry</h1>
+    <hr style="margin:auto; background:rgb(4, 222, 222); width: 30%; padding-bottom: .1rem; border: none; margin-bottom: 1rem;"/>
+    <div id="poems" class="card-project"> <!--poems go here--> </div>
+
+</div>
+
+<div class="explore">
+    <button>Explore More Poems <i class="fa fa-arrow-right"></i> </button>
+</div>
+
+<br>
+<div class="projects">
+    
+    <h1 id="blogs" >Recent Blogs  </h1>
+    <hr style="margin:auto; background:rgb(4, 222, 222); width: 30%; padding-bottom: .1rem; border: none; margin-bottom: 1rem;"/>
+    <div id="blogs" class="card-project"> <!--blogs go here --> </div>
+
+</div>
+
+<div class="explore">
+    <button>Explore More Blogs <i class="fa fa-arrow-right"></i> </button>
+</div>
+
+<br>
+<footer style="background: white; margin-top: 3rem; color: #333; padding: 1rem; text-align: center;">
+    <p> &copy; Copyright 2023 Stan Cizungu cc </p> 
+</footer>
+
+<script src="./components/Card.js"></script>
+<script src="./Utility/Utility.js"></script>
+<script src="./Api/api.js"></script>
+<script src="./components/app.js"></script>
+<script src="./components/NavBar.js"></script>
+<script src="./components/index.js"></script>
+
+<script>
+
+async function showCase()
+{
+   
+const  textLength = 3
+var data = await getAll();
+
+data = data.reverse();
+
+ const cards = document.querySelector('div.cards')
+    
+ for(let i =0; i< 4; i++)
+ {
+    const card = `<div>  
+         <my-card id="${data[i].id}" title="${truncate(
+        data[i].title,3 )}" text="${truncate(data[i].text, textLength)}" imgsrc="${
+        data[i].img
+      }"/>     
+          </div>`;
+
+    cards.innerHTML +=card;
+ 
+   
+ }
+    
+
+}
+
+showCase();
+
+
+</script>
+
+
+</body>
+</html>

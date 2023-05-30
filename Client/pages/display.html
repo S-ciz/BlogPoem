@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/display.css">
+    <link rel="icon" type="image/png" href="../img/sunset.jpeg"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../styles/index.css">
+    
+    <title>Calvin | Display </title>
+</head>
+
+<body>
+    <header class="navbar">
+        <ul class="logo"> <div style="color: white; display: flex; gap: 1rem; font-weight: bold; place-items: center;"> <img src="../img/sunset.jpeg" alt=""> <span class="active"> Calvin  </span> </div></ul>
+
+        <ul style="display:none" class="list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="/pages/blogs.html">Blogs</a></li>
+            <li><a href="/pages/poem.html">Poetry</a></li>
+            <li><a href="./signIn.html">Admin</a></li>
+        </ul>
+       <ul class="bar">
+        <i onclick="toggleBar()" style="color:white;cursor: pointer;" class="fa fa-bars fa-2x"></i>
+       </ul>
+        <ul  id="toggle" style="color: #fff;" class="menu"> <i onclick="()=>{alert('clicked...') }" class="fa fa-bars fa-2x"></i> </ul>
+    
+    </header>
+    <br><br>
+    <div class="wrapper">
+
+        <aside class="first">
+         <div class="img">
+            <img id="main-img" src="../img/princess.jpeg" alt="" srcset="">
+         </div>
+         <div>
+            <button onclick="toggleModal()"  class="btn">Read</button>
+         </div>
+        </aside>
+
+        <aside class="sec">
+
+            <div class="title">Title of Text</div>
+
+            <div id="showcase">
+                <div class="author">
+
+                    <span class="img">
+                   <img  src="../img/queen.jpeg" alt="" srcset="">
+                </span>
+                <span>
+                    <p>Calvin Chidozi</p>
+                </span>
+                </div>
+
+                <div class="icons">
+                <ul>
+                    <li style="background-color: var(--red)"><span><i class="fa fa-thumbs-up"></i></span></li>
+                    <li style="background-color: rgb(128, 219, 128)"><span><i class="fa fa-download"></i></span></li>
+                    <li style="background-color: rgb(230, 176, 76)"><span><i class="fa fa-bookmark"></i></span></li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="background">
+               <p class="text" style="padding-top: 1rem;">Through our blog, we aim to bring you thought-provoking content on a wide range of topics. From personal experiences to societal issues, we delve into the depths of human existence, offering diverse viewpoints and fostering meaningful conversations. <br><br>
+                In addition, our website celebrates the beauty of poetry—an art form that weaves words into melodies of emotion. Immerse yourself in the lyrical cadence of our poems, where every line carries whispers of love, echoes of resilience, and echoes of the human experience.</p>
+            </div>
+            <div class="others">  
+                
+                <div><img src="../img/sunset.jpeg" alt=""></div>
+
+                <div> <img src="../img/girl.jpeg" alt=""> </div>
+                <div> <img src="../img/qp.jpeg" alt=""></div>
+
+
+            </div>
+
+        </aside>
+    </div>
+    
+
+    <div id="modal">
+        <div class="modal-content">
+           <header>
+            <div></div>
+            <div  id="removeModal"><i style="color:black; display: grid;" onclick="removeModal()" class="fa fa-times"></i></div>
+           </header>
+          
+           <div class="content">
+           <h1>Title</h1>
+           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi nam nulla, obcaecati dolore repellat nostrum minima velit repudiandae deleniti in quo fugiat temporibus ipsa suscipit necessitatibus enim assumenda aliquid eaque.</p>
+        </div>
+        </div>
+    </div>
+
+    <footer style="background: white; margin-top: 3rem; color: #333; padding: 1rem; text-align: center;">
+        <p> &copy; Copyright 2023 Stan Cizungu cc </p> 
+    </footer>
+   
+    <script src="../components/index.js"></script>
+    <script src="../Api/api.js"></script>
+    <script>
+
+        async function manageItem()
+        {
+            const id = sessionStorage.getItem("id");
+            const data = await getItem(id);
+
+            //query selector
+
+            const title = document.querySelector('.title');
+            const img = document.querySelector('#main-img');
+            
+            title.innerHTML = data.title;
+             img.src = data.img;
+            
+            document.querySelector('.modal-content h1').textContent= data.title;
+            document.querySelector('.modal-content p').textContent = data.text;
+
+        }
+
+        manageItem();
+
+        //toggle item
+
+        const wrapper = document.querySelector('.wrapper');
+        const footer = document.querySelector('footer');
+        const modal = document.querySelector('#modal')
+    
+       const removeModal = ()=>{
+           modal.style.display = "";
+           wrapper.style.opacity = 1;
+           footer.style.opacity = 1;
+       }
+
+       const toggleModal = ()=>{
+         
+        
+           
+
+          modal.style.display = "grid";
+          wrapper.style.opacity = 0.2;
+          footer.style.opacity = 0.2
+        
+       
+            
+        
+        
+       }
+    </script>
+</body>
+</html>

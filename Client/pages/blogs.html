@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calvin | Blogs</title>
+    <link rel="stylesheet" href="/styles/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="icon" type="image/png" href="../img/sunset.jpeg"/>
+
+</head>
+<body>
+
+    <header class="navbar">
+        <ul class="logo"> <div style="color: white; display: flex; gap: 1rem; font-weight: bold; place-items: center;"> <img src="../img/sunset.jpeg" alt=""> <span class="active"> Calvin  </span> </div></ul>
+
+        <ul style="display:none" class="list">
+            <li><a  href="../index.html">Home</a></li>
+            <li><a style="color: var(--blue-dark-2);" href="/pages/blogs.html">Blogs</a></li>
+            <li><a href="/pages/poem.html">Poetry</a></li>
+            <li><a href="./signIn.html">Admin</a></li>
+        </ul>
+       <ul class="bar">
+        <i onclick="toggleBar()" style="color:white;cursor: pointer;" class="fa fa-bars fa-2x"></i>
+       </ul>
+        <ul  id="toggle" style="color: #fff;" class="menu"> <i onclick="()=>{alert('clicked...') }" class="fa fa-bars fa-2x"></i> </ul>
+    
+    </header>
+    
+<div style="margin-top: 1rem;"  class="blog-container">
+    
+</div>
+    
+<form id="blog-search">
+    <span id="block">
+    <input type="search" placeholder="Search blog by title...">
+    <button id="search"><i class="fa fa-search fa-2x"></i></button>
+</span>
+</form>
+
+
+<div class="blogs"> <!--blogs go here--> </div>
+
+<br><br><br>
+<footer style="position: relative; margin-bottom:0;margin-top: 3rem; bottom: 0;  right: 0;left:0; background: white;  color: #333; padding: 1rem; text-align: center;">
+    <p> &copy; Copyright 2023 Stan Cizungu cc </p> 
+</footer>
+
+<script src="../components/Card.js"></script>
+<script src="../components/index.js"></script>
+<script src="../Utility/Utility.js"></script>
+<script src="../Api/api.js"></script>
+<!-- <script src="../components/app.js"></script> -->
+
+<script>
+//load all blogs
+
+const textLength = 5;
+var blogs = document.querySelector('div.blogs')
+
+
+getBlogs()
+.then(data=>{
+  
+    data.forEach(element => {
+         //set poem
+         blogs.innerHTML += 
+         `<div>  
+         <my-card id="${element.id}" title="${truncate(element.title, 3)}" text="${truncate(element.text, textLength)}" imgsrc="${element.img}"/>     
+          </div>`
+
+    });
+
+})
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calvin | Editor</title>
+    <link rel="stylesheet" href="../styles/Editor.css">
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="icon" type="image/png" href="../img/sunset.jpeg"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../styles/index.css">
+   
+</head>
+<body>
+    <header class="navbar">
+        <ul class="logo"> <div style="color: white; display: flex; gap: 1rem; font-weight: bold; place-items: center;"> <img src="../img/sunset.jpeg" alt=""> <span class="active"> Calvin  </span> </div></ul>
+
+        <ul style="display:none" class="list">
+            <li><a  href="../index.html">Home</a></li>
+            <li><a href="/pages/blogs.html">Blogs</a></li>
+            <li><a href="/pages/poem.html">Poetry</a></li>
+        </ul>
+       <ul class="bar">
+        <i onclick="toggleBar()" style="color:white;cursor: pointer;" class="fa fa-bars fa-2x"></i>
+       </ul>
+        <ul  id="toggle" style="color: #fff;" class="menu"> <i onclick="()=>{alert('clicked...') }" class="fa fa-bars fa-2x"></i> </ul>
+    
+    </header>
+    
+<div class="editor">
+  
+    <div class="first_content">
+   <img src="../img/gif.gif" alt="">
+    </div>
+
+    <div class="second_content">
+           
+        <section>
+            <h1><span><img style="width:50px" src="../img/book.png" alt=""></span>My-Editor</h1>
+        </section>
+            <div> 
+            <label >Title:</label>
+            <input id="title" type="text" placeholder="Enter title">
+          </div>
+            <div><label >Author:</label>
+            <input id="author" type="text" placeholder="Enter Author">
+        </div>
+        <div>
+            <label >Img url:</label>
+            <input id="imgURL" type="text" placeholder="Enter title">
+        </div>
+        <div>
+            <label >Category:</label>
+            <select  name="" id="category">
+
+                <option value="blog">blog</option>
+                <option value="poem">poem</option>
+
+            </select>
+        </div>
+        
+         <button  id="preview" class="btn">Preview Image Url</button>
+        <aside class="previewIMG">
+           <img id="prev_img" src="../img/image.png" alt="">
+        </aside>
+
+        <aside class="textInput">
+          
+            <h3 style="color:#333">Content:</h3>
+            <textarea id="content" placeholder="Type..."></textarea>
+            <button id="submit" class="btn">Submit</button>
+            <button id="updateWork" onclick="updateWork()" style="display: none;" class="btn"> Update</button>
+        </aside>
+        </div>
+
+        
+
+</div>
+
+<div id="works"> <!--Work goes here--> </div>
+
+<script src="../components/index.js"></script>
+  <script src="../Api/api.js"></script>
+  <script src="../Utility/Utility.js"></script>
+    <script>
+//DOM     
+ const Title = document.querySelector('input#title')
+ const Author = document.querySelector('input#author')
+ const imgURL = document.querySelector('input#imgURL')
+ const Cat = document.querySelector('#category')
+ const content = document.querySelector('#content')
+
+
+let submitbtn = document.querySelector('button#submit')
+let previewbtn = document.querySelector("button#preview")
+
+
+previewImage = ()=>{
+
+    let image = document.querySelector('img#prev_img');
+    if(imgURL.value)
+    {
+        image.src = imgURL.value;
+    }
+    else 
+    {
+       // console.log("no image");
+    }
+    
+}
+
+  var condition = !Title.value || !Author.value || !imgURL.value || !Cat.value|| !content.value
+  submitContent = async()=>{
+   
+    if(condition)
+    {
+        const obj = {
+        "title":Title.value,
+        "text": content.value,
+        "category": Cat.value,
+        "img": imgURL.value
+     }
+
+     try
+     {
+        await PostContent(obj);
+        window.alert("Successfully submited work!")
+        window.reload();
+     } catch(err)
+     {
+        window.alert("Connection problems. Try again")
+     }
+ 
+    
+
+    }
+    else 
+    {
+      window.alert("Please fill in all fields...") 
+
+    }
+    
+
+ }
+
+
+ submitbtn.addEventListener('click', submitContent);
+ previewbtn.addEventListener('click', previewImage );
+
+
+
+ //display work
+
+ async function displayWork()
+ {
+    let data = await getAll();
+
+    let works = document.querySelector('#works')
+    
+    data.forEach(element => {
+        
+        img = element.img;
+        text = element.text;
+        title = element.title;
+        id = element.id;
+        let borderBlog = ".5rem solid purple"
+        let borderPoem = ".5rem solid pink"
+       border = element.category=="blog" ? borderBlog : borderPoem
+       let work = ` <div class=${id} style="border-left: ${border  }" id="work">
+    
+    <aside class="details">
+        <div class="d-img"><img src=${img} alt=""></div>
+        <div> 
+        <h3 style="color:grey">${title}  <span style=" color: grey; padding-left: 1rem; font-size: .9rem;">    09:12 08 feb 2022</span> </h3>
+        <p>${truncate(text, 5)} </p>
+    </div>
+    </aside>
+    <aside class="btns">
+      <i onclick="editWork(${id})" style="color: var(--blue-dark);" class="fa fa-2x fa-pen"></i>
+      <i onclick="deleteWork(${id})" style="color:red;font-weight: bold;" class="fa fa-2x fa-trash"></i>
+      <i style="color:lightskyblue" class="fa fa-2x fa-bookmark"> <a href="#toggle"> </a></i>
+    </aside>
+</div>`
+
+//styling work
+   
+
+   works.innerHTML +=work;
+    });
+
+ }
+
+
+ displayWork();
+ 
+ 
+ //delete item
+
+var deleteWork = async(id)=>{
+ 
+   const action = window.confirm("Are you sure you want to delete content?")
+ 
+   if(action)
+   {
+   //remove from database
+   await removeItem(id);
+
+    //remove from html
+    const works = document.querySelector("#works")
+    let work = works.getElementsByClassName(JSON.stringify(id))
+    work[0].remove();
+
+    window.alert("Successfully Deleted!!!")
+   }
+
+
+
+    
+}
+
+
+//update Item
+
+var workID;
+
+var editWork = async(id)=>{
+
+ var data = await getItem(id);
+ let image = document.querySelector('img#prev_img');
+  Title.value = data.title
+  Author.value = "calvin"
+  imgURL.value = image.src = data.img
+  Cat.value = data.category
+  content.value = data.text ;
+
+
+  workID = id;
+  
+  var oldbtn = document.querySelector("button#submit"); 
+  var newbtn = document.querySelector("button#updateWork");
+
+  newbtn.style.display = "block"
+  oldbtn.style.display = "none"
+
+  //scroll back to top
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Optional: Add smooth scrolling effect
+  })
+  
+}
+
+
+//update work
+const updateWork = async()=>{
+  
+      
+     if(condition)
+     {
+        const obj = {
+        title:Title.value,
+        text: content.value,
+        category: Cat.value,
+        img: imgURL.value
+        }
+
+        const data = await updateItem(workID, obj);
+
+        window.alert("Successfully updated!")
+        
+        location.reload();
+      
+     }
+     else 
+     {
+        window.alert("Please enter all fields")
+     }
+       
+}
+
+    </script>  
+</body>
+</html>

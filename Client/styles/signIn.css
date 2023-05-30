@@ -1,0 +1,71 @@
+
+
+:root
+{
+    --form-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.sign-in
+{  
+    overflow-y: scroll;
+    position: relative;
+    background-color: var(--blue-dark);
+    width: 100%;
+    height: 100vh;
+    padding: 3rem;
+  
+}
+
+a{
+    text-decoration: none;
+    
+}
+
+button 
+{
+    height: 40px;
+    width: 100%;
+    background-color: var(--blue-dark);
+    color: #fff;
+    border: none;
+    border-radius: 1rem;
+
+}
+.sign-in form 
+{    
+    display: grid;
+    box-shadow: var(--form-shadow);
+    width: 450px;
+    background-color: #fff;
+    border-radius: 1rem;
+    margin: auto;
+    padding: 2rem;
+    margin-top: 2rem;
+    
+}
+
+.sign-in label
+{
+    display: block;
+    padding: 1rem 0;
+    color: var(--blue-dark);
+   
+}
+
+.sign-in input
+{
+    height: 3rem;
+    border: 1px solid #ccc;
+    padding-left: .5rem;
+
+}
+
+@media (max-width:600px) {
+    
+    .sign-in form 
+    {
+        width: 100%;
+
+    }
+}
+

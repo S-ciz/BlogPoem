@@ -1,0 +1,292 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+textarea
+{
+    padding: 1rem;
+    margin-top: .5rem;
+    font-size: 20px;
+}
+
+input 
+{
+    height: 40px;
+    padding-left: 1rem;
+    margin-top: .5rem;
+    width: 100%;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+select:focus,textarea:focus, input:focus
+{
+ outline: none;
+}
+
+.editor
+{
+    width: 90%;
+    display: flex;
+    height: 500px;
+    margin: auto;
+    margin-top: 5.5rem;
+    background-color: #fff;
+    
+}
+
+select
+{  
+    
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    background-color: none;
+    padding-left: 1rem;
+    margin-top: .5rem;
+}
+
+.editor .first_content
+{    
+    width: 50%;
+     object-fit: cover;
+     display: grid;
+     place-items: center;
+     place-content: center;
+    
+}
+
+.editor .first_content img
+{  
+
+      object-fit: cover;
+      width: 100%;
+}
+
+.editor .second_content 
+{   
+    opacity: .9;
+    overflow-y: scroll;
+    padding: 1rem;
+    width: 50%;
+}
+
+button.btn 
+{
+    width: 100%;
+    transition: all .5s ease-in-out;
+    height: 45px;
+    margin-top: 1.5rem;
+    border: none; 
+    background: #25D366;
+    color: #fff;
+   
+}
+
+button.btn:hover{
+    border-radius: 1rem;
+    background-color: var(--blue-dark)
+   
+}
+.editor .second_content div
+{
+    padding-top: .5rem;
+
+}
+
+.editor section 
+{   
+    text-align: center;
+    font-weight: bold;
+    display:grid;
+    place-content: center;
+    place-items: center;
+    margin: auto;
+    width: 100%;
+    margin-bottom: 1rem;
+  
+}
+
+ 
+
+
+.editor section h1 
+{
+    font-size: 30px;
+    display: flex;
+    gap: .1rem;
+    place-items: center;
+    place-content: center;
+}
+
+label 
+{    
+    display: block;
+    font-weight: bold;
+    color: #333;
+    padding-left: .3rem;
+
+}
+
+.editor .previewIMG 
+{
+    width: 100%;
+    margin-top: 2rem;
+    height: 200px;
+    display: grid;
+    place-items: center;
+    place-content: center;
+}
+
+.editor .previewIMG img 
+{
+    width: 100%;
+    padding: 2rem 0;
+    height: 300px;
+    object-fit: cover;
+}
+
+.editor .textInput 
+{
+    margin-top: 1rem;
+}
+.editor .textInput textarea
+{
+    width: 100%;
+    border: none;
+     border: 1px solid #ccc;
+
+    color: #333;
+    height: 400px;
+    resize: none;
+}
+
+
+#works
+{
+    width: 80%;
+    border-radius: .5rem;
+    padding: 1rem;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+#work 
+{    
+    margin-bottom: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #fff;
+   
+    display: flex;
+   
+    border-radius: 1rem;
+    place-content: center;
+    place-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+#work .btns 
+{
+    display: flex;
+   
+    gap: 2rem;
+}
+#work .btns i
+{
+   
+    font-size: 1.5rem;
+    transition: all .5s ease-in-out;
+}
+
+#work .btns i:hover 
+{
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+#work aside.details 
+{
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+}
+#work aside.details .d-img 
+{  
+    width: 50px;
+}
+
+#work aside.details .d-img img 
+{
+    
+    width: 50px;
+    object-fit: cover;
+    border-radius: .5rem;
+    
+}
+
+.btns 
+{
+    padding-right: 2rem;
+}
+
+@media (max-width:700px) {
+    
+    .editor
+    {
+        display: grid;
+        width: 99%;
+        height:900px;
+    }
+    .editor .first_content 
+    {
+        
+        display: grid;
+         place-items: center;
+         padding: 2rem 0;
+        margin: auto;
+    }
+
+    .editor .second_content 
+    {
+        width: 100%;
+        border-top: 1rem solid #ccc;
+    }
+
+    #works 
+    {
+        width: 100%;
+    }
+    #work .btns i
+    {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width:600px)
+{
+    #work 
+    {
+        display: grid;
+    }
+    #work .btns
+    {
+        margin-top: -2rem;
+    
+    }
+    #work .btns i
+    {    
+        transition: none;
+        padding-right: 0;
+        padding-left: 0;
+        padding-bottom: 1rem;
+    }
+}

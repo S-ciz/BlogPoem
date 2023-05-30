@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/signIn.css">
+    <link rel="icon" type="image/png" href="../img/sunset.jpeg"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../styles/index.css">
+    <title>Calvin | Admin</title>
+</head>
+<body>
+    <div class='sign-in'>
+        
+        <form  id='sign-in' >
+               
+               <h1 style="display: flex;color: var(--blue-dark); place-content: center; place-items: center;"> <i class="fa fa-2x fa-user"></i></h1>
+              <h2 style="display: flex; place-content: center; place-items: center;" >Administrator</h2>
+              
+              <div class='alert-msg'></div>
+            <label>Username</label>
+            <input name='tel' type="tel" class="tel" placeholder='Enter username...'    />
+             
+            <label>Password</label>
+            <input name="username"  type="password" class="username" placeholder='Enter password...'  /> 
+            
+            <br>
+            <button href="./index.html" class="btn">Login</button>
+          
+        </form>
+     
+<script>
+    
+    const form = document.querySelector("form")
+    const username = document.querySelector('input.tel')
+    const pasword = document.querySelector("input.username")
+
+    form.addEventListener('submit', e =>{
+        e.preventDefault();
+
+      
+        if(pasword.value=="" || username.value == "")
+        {
+            window.alert("Please enter all fields")
+        }
+        else if(username.value =="Calvin" && pasword.value =="calvinblog")
+        {
+            window.location.pathname = "/pages/Editor.html"
+        }
+
+    })
+
+
+</script>
+</body>
+</html>
