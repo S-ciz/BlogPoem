@@ -334,7 +334,7 @@ ul.menu:hover {
   .hero 
   {
     width: 90%;
-    margin-top:-5rem;
+    margin-top:0;
   }
   .card-project {
     display: grid;
