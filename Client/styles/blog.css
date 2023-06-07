@@ -95,8 +95,8 @@ form button {
 
   .blogs 
   {  
-   
    gap: .5rem;
+   padding: 0 1rem;
    width: 100%;
   }
 }
