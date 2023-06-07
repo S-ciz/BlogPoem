@@ -26,13 +26,13 @@ function sameContent(array1, array2)
 }
 //getAllItems
 async function getAll() {
- 
-  var localdata = JSON.parse(localStorage.getItem('data'));
-
-  if(!localdata || localdata.length == 0)
-  {  
     let res = await fetch(baseUrl, options);
     let data = await res.json();
+   var localdata = JSON.parse(localStorage.getItem('data'));
+   const sameContent = JSON.stringify(data) === JSON.stringify(localdata)
+  if(!localdata || localdata.length == 0 || sameContent==false )
+  {  
+   
     setLocalStorage(data)
     window.location.reload();
 
