@@ -332,7 +332,7 @@ ul.menu:hover {
   {
     width: 90%;
     margin-top:-10rem;
-    z-index: 2;
+    z-index:5;
   }
   .card-project {
     display: grid;
