@@ -243,7 +243,7 @@ label
     .editor
     {
         display: grid;
-        width: 99%;
+        width: 90%;
         height:900px;
     }
     .editor .first_content 
@@ -258,7 +258,9 @@ label
     .editor .second_content 
     {
         width: 100%;
-        border-top: 1rem solid #ccc;
+        overflow:none;
+        border-top: 1px solid #ccc;
+        height: 100vh;
     }
 
     #works 

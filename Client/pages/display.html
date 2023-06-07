@@ -33,7 +33,7 @@
 
         <aside class="first">
          <div class="img">
-            <img id="main-img" src="../img/princess.jpeg" alt="" srcset="">
+            <img loading="lazy" id="main-img" src="../img/princess.jpeg" alt="" srcset="">
          </div>
          <div>
             <button onclick="toggleModal()"  class="btn">Read</button>
@@ -48,7 +48,7 @@
                 <div class="author">
 
                     <span class="img">
-                   <img  src="../img/queen.jpeg" alt="" srcset="">
+                   <img loading="lazy"  src="../img/queen.jpeg" alt="" srcset="">
                 </span>
                 <span>
                     <p>Calvin Chidozi</p>
@@ -70,10 +70,10 @@
             </div>
             <div class="others">  
                 
-                <div><img src="../img/sunset.jpeg" alt=""></div>
+                <div><img loading="lazy" src="../img/sunset.jpeg" alt=""></div>
 
-                <div> <img src="../img/girl.jpeg" alt=""> </div>
-                <div> <img src="../img/qp.jpeg" alt=""></div>
+                <div> <img loading="lazy" src="../img/girl.jpeg" alt=""> </div>
+                <div> <img loading="lazy" src="../img/qp.jpeg" alt=""></div>
 
 
             </div>
@@ -104,13 +104,15 @@
     <script src="../Api/api.js"></script>
     <script>
 
-        async function manageItem()
+         function manageItem()
         {
             const id = sessionStorage.getItem("id");
-            const data = await getItem(id);
+            var data = getItem(parseInt(id));
+
+            console.log(data);
+
 
             //query selector
-
             const title = document.querySelector('.title');
             const img = document.querySelector('#main-img');
             

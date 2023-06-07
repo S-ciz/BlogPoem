@@ -56,14 +56,16 @@
 <script>
     //load all blogs
     
-    const textLength = 5;
-    var poems = document.querySelector('div.blogs')
-   async function displayPoems()
-    {
-       const data = await getPoems();
+   
+
+    function displayPoems()
+    {   
+        const textLength = 5;
+       var poems = document.querySelector('div.blogs');
+
+       const data = getPoems();
 
         data.forEach(element => {
-
          //set poem
          poems.innerHTML += 
          `<div>  

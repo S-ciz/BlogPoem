@@ -1,12 +1,10 @@
-const numWordGenerated = 80;
 
 //when window loads, display content
-window.addEventListener("DOMContentLoaded", (e) => {
-  const textLength = 5;
+window.addEventListener("DOMContentLoaded",(e) => {
+  const textLength = 4;
   //get poems
-  getPoems().then((data) => {
+    var data = getPoems()
     const poems = document.querySelector("div#poems");
-
      for(let i =0; i< 4; i++)
      {
       //set poem
@@ -20,27 +18,24 @@ window.addEventListener("DOMContentLoaded", (e) => {
           </div>`;
     }
 
-  });
-
   //get blogs
-  getBlogs().then((data) => {
+  var blogData = getBlogs()
     const blogs = document.querySelector("div#blogs");
       
     for(let i = 0; i< 4; i++)
     {
  //set blog
  blogs.innerHTML += `<div>  
- <my-card id="${data[i].id}" title="${truncate(
-  data[i].title,
+ <my-card id="${blogData[i].id}" title="${truncate(
+  blogData[i].title,
 3
-)}" text="${truncate(data[i].text, textLength)}" imgsrc="${
-  data[i].img
+)}" text="${truncate(blogData[i].text, textLength)}" imgsrc="${
+  blogData[i].img
 }"/>     
   </div>`;
     }
      
   
-  });
 });
 
 

@@ -60,10 +60,8 @@
 const textLength = 5;
 var blogs = document.querySelector('div.blogs')
 
+var data = getBlogs();
 
-getBlogs()
-.then(data=>{
-  
     data.forEach(element => {
          //set poem
          blogs.innerHTML += 
@@ -73,7 +71,7 @@ getBlogs()
 
     });
 
-})
+
 
 
 </script>

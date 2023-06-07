@@ -53,9 +53,13 @@ form button {
 
 @media (max-width: 1000px) {
   .blogs {
+    
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    
   }
+
+  
 }
 
 @media (max-width: 800px) {
@@ -69,23 +73,30 @@ form button {
   }
 }
 
-@media (max-width: 700px) {
-  .blogs {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-   
-  }
-}
 
-@media (max-width: 600px) {
-  .blogs {
-    display: grid;
-    padding: 3rem;
-    grid-template-columns: repeat(1, 1fr);
+
+@media (max-width: 700px) {
+ 
+  .blogs 
+  {  
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 1rem;
   }
 
   .blogs div 
   {
     margin-bottom: 1.5rem;
+
+  }
+}
+
+@media (max-width: 600px) {
+
+  .blogs 
+  {  
+   
+   gap: .5rem;
+   width: 100%;
   }
 }

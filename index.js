@@ -13,8 +13,8 @@ const { log } = require("console");
 //use body parser
 app.use(bodyParser.json());
 
-use cors
-//app.use(cors());
+//use cors
+app.use(cors());
 
 //static folder
 app.use(express.static(path.join(__dirname, "./Client")));

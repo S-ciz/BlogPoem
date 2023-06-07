@@ -31,7 +31,7 @@
 <div class="editor">
   
     <div class="first_content">
-   <img src="../img/gif.gif" alt="">
+   <img src="../img/newgif.jpg" alt="">
     </div>
 
     <div class="second_content">
@@ -62,7 +62,7 @@
         
          <button  id="preview" class="btn">Preview Image Url</button>
         <aside class="previewIMG">
-           <img id="prev_img" src="../img/image.png" alt="">
+           <img loading="eager" id="prev_img" src="../img/image.png" alt="">
         </aside>
 
         <aside class="textInput">
@@ -122,18 +122,11 @@ previewImage = ()=>{
         "img": imgURL.value
      }
 
-     try
-     {
+    
         await PostContent(obj);
         window.alert("Successfully submited work!")
         window.reload();
-     } catch(err)
-     {
-        window.alert("Connection problems. Try again")
-     }
- 
     
-
     }
     else 
     {
@@ -152,14 +145,13 @@ previewImage = ()=>{
 
  //display work
 
- async function displayWork()
+  function displayWork()
  {
-    let data = await getAll();
+    let data = JSON.parse(localStorage.getItem('data'))
 
     let works = document.querySelector('#works')
     
     data.forEach(element => {
-        
         img = element.img;
         text = element.text;
         title = element.title;
@@ -170,7 +162,7 @@ previewImage = ()=>{
        let work = ` <div class=${id} style="border-left: ${border  }" id="work">
     
     <aside class="details">
-        <div class="d-img"><img src=${img} alt=""></div>
+        <div class="d-img"><img loading="lazy" src=${img} alt="image"></div>
         <div> 
         <h3 style="color:grey">${title}  <span style=" color: grey; padding-left: 1rem; font-size: .9rem;">    09:12 08 feb 2022</span> </h3>
         <p>${truncate(text, 5)} </p>
@@ -184,7 +176,6 @@ previewImage = ()=>{
 </div>`
 
 //styling work
-   
 
    works.innerHTML +=work;
     });
@@ -197,15 +188,21 @@ previewImage = ()=>{
  
  //delete item
 
-var deleteWork = async(id)=>{
+var deleteWork = (id)=>{
  
    const action = window.confirm("Are you sure you want to delete content?")
  
    if(action)
    {
    //remove from database
-   await removeItem(id);
+    removeItem(id)
+    .then(res=>{
+        console.log(res);
+    })
+   var data = JSON.parse(localStorage.getItem('data'))
 
+    data = data.filter(element=> element.id !== id)
+    localStorage.setItem('data', JSON.stringify(data))
     //remove from html
     const works = document.querySelector("#works")
     let work = works.getElementsByClassName(JSON.stringify(id))

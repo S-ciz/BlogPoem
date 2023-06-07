@@ -43,13 +43,13 @@
 <section style="background: none; display: flex; gap: 1rem;" class="hero">
   
     <div class="sec">
-        <img src="./img/design.jpeg" alt="">
+        <img loading="lazy" src="./img/design.jpeg" alt="">
     </div>
     <div class="sec">
-        <img src="./img/coudHouse.jpeg" alt="">
+        <img loading="lazy" src="./img/coudHouse.jpeg" alt="">
     </div>
     <div class="sec">
-        <img src="./img/poetryidea.jpeg" alt="">
+        <img loading="lazy" src="./img/poetryidea.jpeg" alt="">
     </div>
 
 </section> 
@@ -57,7 +57,7 @@
 <section class="hero">
   
     <div class="sec">
-        <img src="./img/girl.jpeg" alt="">
+        <img loading="eager" src="./img/girl.jpeg" alt="">
     </div>
 <div class="first">
     <h1 style="font-size: 30px;" class="active">Welcome!</h1>
@@ -125,11 +125,11 @@
 
 <script>
 
-async function showCase()
+ function showCase()
 {
    
 const  textLength = 3
-var data = await getAll();
+var data =  JSON.parse(localStorage.getItem("data"))
 
 data = data.reverse();
 
@@ -146,7 +146,6 @@ data = data.reverse();
 
     cards.innerHTML +=card;
  
-   
  }
     
 

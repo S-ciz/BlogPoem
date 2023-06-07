@@ -1,47 +1,103 @@
-let baseUrl =  window.location.origin + "/calvin/data";
+let baseUrl = window.location.origin + "/calvin/data";
 let options = {
   method: "GET",
   header: { "Content-Type": "application/json" },
 };
 
-//get all poems
-async function getPoems() {
-  let res = await fetch(baseUrl, options);
-  if (res.ok) {
+function sameSize(local_array, data_array)
+{
+
+return (local_array.length == data_array.length)
+
+}
+
+function setLocalStorage(arr)
+{
+  localStorage.setItem('data', JSON.stringify(arr))
+}
+
+function sameContent(array1, array2)
+{
+     if(array1.length == array2.length)
+     {
+       return JSON.stringify(array1) == JSON.stringify(array2)? true: false;
+     } 
+     
+}
+//getAllItems
+async function getAll() {
+ 
+  var localdata = JSON.parse(localStorage.getItem('data'));
+
+  if(!localdata || localdata.length == 0)
+  {  
+    let res = await fetch(baseUrl, options);
     let data = await res.json();
-    let poems = data.filter((poem) => poem.category === "poem");
-    return poems.reverse();
-  } else {
-    return { Message: "Error getting all poems" };
+    setLocalStorage(data)
+    window.location.reload();
+
+    console.log("data has been loaded...");
   }
+
+}
+
+getAll();
+
+//get all poems
+ function getPoems() {
+   
+  let data = JSON.parse(localStorage.getItem('data'))
+   
+  if(data && data.length > 0)
+  {
+    let poems = data.filter((poem) => poem.category === "poem");
+
+    return poems.reverse();
+  }
+  else 
+  {
+     console.log("no data found...");
+  }
+
+  
 }
 
 //get blogs
-async function getBlogs() {
-  let res = await fetch(baseUrl, options);
-  if (res.ok) {
-    let data = await res.json();
+ function getBlogs() {
+    
+  let data = JSON.parse(localStorage.getItem('data'))
+   
+  if(data && data.length > 0)
+  {
     let blogs = data.filter((poem) => poem.category === "blog");
     return blogs.reverse();
-  } else {
-    return { Message: "Error fetching all blogs." };
   }
+    
+  
 }
 
 //get item by id
-async function getItem(id) {
-  const newUrl = baseUrl + "/" + id;
-  let res = await fetch(newUrl, options);
-  if (res.ok) {
-    let data = await res.json();
+ function getItem(id) {
 
-    return data;
-  } else {
-    return { Message: "Error fetching a particular item by id" };
-  }
+  var data = JSON.parse(localStorage.getItem('data'))
+   
+    var obj
+   
+    for(let i = 0; i< data.length; i++)
+    {
+
+      if(data[i].id == id)
+      {
+       
+        obj = data[i]
+        break;
+      }
+    }
+
+  return obj;
+
 }
 
-//get random count
 
 //generate randomNumber
 function generateRandomNumber(max) {
@@ -68,13 +124,7 @@ async function getRandom(intCount) {
   return arr;
 }
 
-//getAllItems
-async function getAll() {
-  let res = await fetch(baseUrl, options);
-  let data = await res.json();
 
-  return data;
-}
 
 //Posting to  database
 async function PostContent(bodyContent) {
@@ -89,6 +139,7 @@ async function PostContent(bodyContent) {
   });
 
   let data = await response.text();
+
 }
 
 //remove from database
@@ -96,16 +147,15 @@ async function removeItem(id) {
   let headersList = {
     "Content-Type": "application/json",
   };
-
   const newurl = baseUrl + "/" + id;
-
   let response = await fetch(newurl, {
     method: "DELETE",
     headers: headersList,
   });
 
   let data = await response.text();
-  //console.log(data);
+  console.log(data);
+
 }
 
 
@@ -115,7 +165,6 @@ async function updateItem(id, bodyContent)
   let headersList = {
     "Content-Type": "application/json"
    }
-  
    const newurl = baseUrl + "/" + id;
    let response = await fetch(newurl, { 
      method: "PUT",
