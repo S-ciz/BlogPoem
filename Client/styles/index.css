@@ -327,6 +327,13 @@ ul.menu:hover {
 }
 
 @media (max-width: 600px) {
+  
+  .hero 
+  {
+    width: 90%;
+    margin: auto;
+    margin-top:0;
+  }
   .card-project {
     display: grid;
     grid-template-columns: 1fr;
