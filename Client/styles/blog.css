@@ -81,6 +81,7 @@ form button {
   {  
    display: grid;
    width:100%;
+   padding: 0 1rem;
    grid-template-columns: repeat(2, 1fr);
    gap: .5rem;
   }
