@@ -366,4 +366,8 @@ ul.menu:hover {
     grid-gap: 3rem;
     width: 100%;
   }
+  .hero 
+  {
+     width: 90%;
+  }
 }
