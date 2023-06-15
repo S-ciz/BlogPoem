@@ -91,11 +91,3 @@ form button {
   }
 }
 
-@media (max-width: 600px) {
-
-  .blogs 
-  { 
-   gap: 1rem;
-   width: 80%;
-  }
-}
