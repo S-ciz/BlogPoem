@@ -51,7 +51,7 @@ async function getAll() {
   //check if content is the same then update
   if (isSameContent === false) {
     setLocalStorage(data);
-   // window.location.reload();
+    window.location.reload();
     console.log("data has been loaded...");
   }
 }
