@@ -1,6 +1,6 @@
 var data = require("./data");
 
-var getID = require("./getID")
+var getID = require("./getID");
 
 class Controls {
   //get all data
@@ -11,28 +11,20 @@ class Controls {
   }
 
   //update item
-  static updateItem(id, title, text, category, img)
-  {
-    return new Promise((resolve, reject)=>{
-    const item = data.find((element) => element.id === parseInt(id));
-    
-    if(item)
-    { 
-      
-      item.title = title,
-      item.text = text;
-      item.img = img;
-      item.category = category
-    
-      resolve(item)
+  static updateItem(id, title, text, category, img) {
+    return new Promise((resolve, reject) => {
+      const item = data.find((element) => element.id === parseInt(id));
 
-    }
-    else 
-    {
-      reject(`could not find item with id ${id}`)
-    }
+      if (item) {
+        (item.title = title), (item.text = text);
+        item.img = img;
+        item.category = category;
 
-    })
+        resolve(item);
+      } else {
+        reject(`could not find item with id ${id}`);
+      }
+    });
   }
 
   //get single data
@@ -61,10 +53,8 @@ class Controls {
           img: img,
           background: "This is the background",
         },
-
-        
       ];
-      
+
       resolve(data);
     });
   }
@@ -73,7 +63,7 @@ class Controls {
   static deleteDatum(id) {
     return new Promise((resolve, reject) => {
       var item = data.find((element) => element.id === parseInt(id));
-    
+
       if (item) {
         data = data.filter((element) => element.id !== parseInt(id));
 

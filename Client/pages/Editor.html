@@ -249,6 +249,7 @@ var editWork = async(id)=>{
 }
 
 
+
 //update work
 const updateWork = async()=>{
   
@@ -256,17 +257,40 @@ const updateWork = async()=>{
      if(condition)
      {
         const obj = {
+        id: workID,
         title:Title.value,
         text: content.value,
         category: Cat.value,
         img: imgURL.value
-        }
+        } 
+      
+        //update localStorage
+        // Step 1: Retrieve the array from localStorage
+const arrayFromStorage = JSON.parse(localStorage.getItem('data'));
 
-        const data = await updateItem(workID, obj);
+// Step 2: Find the object you want to update
+let objectToUpdate = arrayFromStorage.find((obj) => obj.id == parseInt(workID)); // Assuming 'id' is the identifier
 
-        window.alert("Successfully updated!")
+if (objectToUpdate) 
+{
+  // Step 3: Modify the content of the object
+  objectToUpdate = obj;
+
+  // Step 4: Store the updated array back into localStorage
+  localStorage.setItem('data', JSON.stringify(arrayFromStorage));
+}
+
+
+        //update database
+        const textData = await updateItem(parseInt(workID), obj);
         
-        location.reload();
+        console.log(textData);
+        if(textData!=="")
+        {
+            window.alert("Successfully updated!")
+            window.location.reload();
+        }
+       
       
      }
      else 

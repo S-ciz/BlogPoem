@@ -4,6 +4,7 @@
   margin: 0;
 }
 
+
 .active {
   color: var(--blue-dark-2);
 }
@@ -73,6 +74,7 @@ header.navbar {
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
+  filter: brightness(.7);
 }
 
 input:focus{
@@ -143,6 +145,13 @@ header.navbar ul.list a:hover {
   padding-bottom: 1rem;
 }
 
+section#hero 
+{
+  background-color: none;
+  display: grid;
+  gap: .5rem;
+}
+
 .box {
   background: var(--blue-dark);
   padding: 0.3rem;
@@ -169,6 +178,27 @@ button:hover {
   color: var(--white);
 }
 
+#hero-section 
+{
+  background: none;
+  width: 80%;
+  padding: 2rem;
+  display: flex;
+  place-items: center;
+  place-content: center;
+  margin: auto;
+  gap: 1rem;
+  filter: brightness(.7);
+}
+
+#hero-section div.sec img
+{
+  width: 100%;
+  object-fit: cover;
+  border-radius: .5rem;
+  filter: brightness(.7);
+  
+}
 
 .hero {
   display: grid;
@@ -313,29 +343,23 @@ ul.menu:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 
+
+  #hero-section 
+  {
+    display: none;
+  }
+
   .boxes {
     display: flex;
   }
 
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
+  
   .hero .first {
     padding-bottom: 2rem;
   }
 }
 
 @media (max-width: 600px) {
-  div.showcase
-  {
-    height: 70vh;
-  }
-  .hero 
-  {
-    width: 90%;
-    margin-top:0rem;
-  }
   .card-project {
     display: grid;
     grid-template-columns: 1fr;

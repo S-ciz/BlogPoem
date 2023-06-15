@@ -26,5 +26,3 @@ function displayMessage(div, message, background, timeout) {
     div.remove();
   }, timeout);
 }
-
-

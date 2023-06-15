@@ -94,9 +94,8 @@ form button {
 @media (max-width: 600px) {
 
   .blogs 
-  {  
-   gap: .5rem;
-   padding: 0 1rem;
+  { 
+   gap: 1rem;
    width: 100%;
   }
 }

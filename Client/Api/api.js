@@ -4,100 +4,98 @@ let options = {
   header: { "Content-Type": "application/json" },
 };
 
-function sameSize(local_array, data_array)
-{
-
-return (local_array.length == data_array.length)
-
+function setLocalStorage(arr) {
+  localStorage.setItem("data", JSON.stringify(arr));
 }
 
-function setLocalStorage(arr)
-{
-  localStorage.setItem('data', JSON.stringify(arr))
-}
-
-function sameContent(array1, array2)
-{
-     if(array1.length == array2.length)
-     {
-       return JSON.stringify(array1) == JSON.stringify(array2)? true: false;
-     } 
-     
-}
-//getAllItems
-async function getAll() {
-    let res = await fetch(baseUrl, options);
-    let data = await res.json();
-   var localdata = JSON.parse(localStorage.getItem('data'));
-   const sameContent = JSON.stringify(data) === JSON.stringify(localdata)
-  if(!localdata || localdata.length == 0 || sameContent==false )
-  {  
-   
-    setLocalStorage(data)
-    window.location.reload();
-
-    console.log("data has been loaded...");
+function sameContent(array1, array2) {
+  // Check if the arrays have the same length
+  if (array1.length !== array2.length) {
+    return false;
   }
 
+  // Sort the arrays to ensure consistent ordering for comparison
+  const sortedArray1 = array1.sort();
+  const sortedArray2 = array2.sort();
+
+  // Compare each object in the arrays
+  for (let i = 0; i < sortedArray1.length; i++) {
+    const obj1 = sortedArray1[i];
+    const obj2 = sortedArray2[i];
+
+    // Convert the objects to strings for comparison
+    const stringObj1 = JSON.stringify(obj1);
+    const stringObj2 = JSON.stringify(obj2);
+
+    // Compare the stringified objects
+    if (stringObj1 !== stringObj2) {
+      return false;
+    }
+  }
+
+  // All objects are the same
+  return true;
+}
+//getAllItems
+
+async function getAll() {
+  let res = await fetch(baseUrl, options);
+  let data = await res.json();
+  let localdata = JSON.parse(localStorage.getItem("data"));
+  let isSameContent = false;
+
+  if (localdata !== null) {
+    isSameContent = sameContent(data, localdata);
+  }
+
+  //check if content is the same then update
+  if (isSameContent === false) {
+    setLocalStorage(data);
+    window.location.reload();
+    console.log("data has been loaded...");
+  }
 }
 
 getAll();
 
 //get all poems
- function getPoems() {
-   
-  let data = JSON.parse(localStorage.getItem('data'))
-   
-  if(data && data.length > 0)
-  {
+function getPoems() {
+  let data = JSON.parse(localStorage.getItem("data"));
+
+  if (data && data.length > 0) {
     let poems = data.filter((poem) => poem.category === "poem");
 
     return poems.reverse();
+  } else {
+    console.log("no data found...");
   }
-  else 
-  {
-     console.log("no data found...");
-  }
-
-  
 }
 
 //get blogs
- function getBlogs() {
-    
-  let data = JSON.parse(localStorage.getItem('data'))
-   
-  if(data && data.length > 0)
-  {
+function getBlogs() {
+  let data = JSON.parse(localStorage.getItem("data"));
+
+  if (data && data.length > 0) {
     let blogs = data.filter((poem) => poem.category === "blog");
     return blogs.reverse();
   }
-    
-  
 }
 
 //get item by id
- function getItem(id) {
+function getItem(id) {
+  var data = JSON.parse(localStorage.getItem("data"));
 
-  var data = JSON.parse(localStorage.getItem('data'))
-   
-    var obj
-   
-    for(let i = 0; i< data.length; i++)
-    {
+  var obj;
 
-      if(data[i].id == id)
-      {
-       
-        obj = data[i]
-        break;
-      }
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].id == id) {
+      obj = data[i];
+      break;
     }
+  }
 
   return obj;
-
 }
-
 
 //generate randomNumber
 function generateRandomNumber(max) {
@@ -124,8 +122,6 @@ async function getRandom(intCount) {
   return arr;
 }
 
-
-
 //Posting to  database
 async function PostContent(bodyContent) {
   let headersList = {
@@ -139,7 +135,6 @@ async function PostContent(bodyContent) {
   });
 
   let data = await response.text();
-
 }
 
 //remove from database
@@ -155,24 +150,22 @@ async function removeItem(id) {
 
   let data = await response.text();
   console.log(data);
-
 }
 
-
 //update data
-async function updateItem(id, bodyContent)
-{
+async function updateItem(id, bodyContent) {
   let headersList = {
-    "Content-Type": "application/json"
-   }
-   const newurl = baseUrl + "/" + id;
-   let response = await fetch(newurl, { 
-     method: "PUT",
-     body: JSON.stringify(bodyContent),
-     headers: headersList
-   });
-   
-   let data = await response.text();
- 
-   
+    "Content-Type": "application/json",
+  };
+  const newurl = baseUrl + "/" + id;
+  let response = await fetch(newurl, {
+    method: "PATCH",
+    body: JSON.stringify(bodyContent),
+    headers: headersList,
+  });
+
+  if (response.ok) {
+    console.log(response);
+    return await response.text();
+  }
 }

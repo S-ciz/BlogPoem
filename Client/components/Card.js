@@ -1,4 +1,4 @@
-//Card component for blog and poem 
+//Card component for blog and poem
 var cardTEmp = document.createElement("template");
 
 //Card styling: css
@@ -20,7 +20,8 @@ cardTEmp.innerHTML = `
 }
 
 .card img 
-{
+{  
+    filter: brightness(.9);
     width: 200px;
     height: 150px;
     object-fit: cover;
@@ -63,7 +64,7 @@ button:hover{
 {
     .card 
     {
-        width: 100%;
+        width: 200px;
         height: 300px;
         object-fit:cover;
     }
@@ -90,7 +91,7 @@ button:hover{
            <button> Read more </button>
         </div>
   
-`
+`;
 
 //Card Component
 class Card extends HTMLElement {
@@ -110,13 +111,10 @@ class Card extends HTMLElement {
   }
 
   toggleCard(e) {
-   
-
-    if (e.target.textContent.trim() ==="Read more") {
+    if (e.target.textContent.trim() === "Read more") {
       const id = e.target.parentElement.id;
       window.sessionStorage.setItem("id", id);
-      window.location.pathname = "../pages/display.html"
-    
+      window.location.pathname = "../pages/display.html";
     }
   }
 }

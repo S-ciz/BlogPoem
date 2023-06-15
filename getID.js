@@ -1,26 +1,19 @@
-
 const data = require("./data");
 const id_length = 10000000000;
 
 function generateRandomId(max) {
+  return Math.floor(Math.random() * max) + 1;
+}
 
-    return Math.floor(Math.random() * max) + 1;
-  
-  }
+function getID() {
+  var newID = generateRandomId(id_length);
+  data.forEach((element) => {
+    while (element.id == newID) {
+      newID = generateRandomId(id_length);
+    }
+  });
 
-  function getID()
-  {   
-       var newID = generateRandomId(id_length)
-       data.forEach(element=>{
-        while(element.id == newID )
-        {
-           newID = generateRandomId(id_length)
-        }
-        
-       })
+  return newID;
+}
 
-       return newID; 
-  }
-
-
-  module.exports = getID;
+module.exports = getID;

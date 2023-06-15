@@ -7,7 +7,7 @@ const controls = require("./controls");
 const bodyParser = require("body-parser");
 
 //superbase
-const supabase = require('./SupaBase');
+const supabase = require("./SupaBase");
 const { log } = require("console");
 
 //use body parser
@@ -42,45 +42,31 @@ app.get("/calvin/data/:id", async (req, res) => {
   }
 });
 
-
 //post an item
 app.post("/calvin/data", async (req, res) => {
-
   res.writeHead(200, { "Content-Type": "Application/json" });
 
-  
-  try 
-  {
-  const data = await controls.addData(
-    req.body.title,
-    req.body.text,
-    req.body.category,
-    req.body.img
-  );
-  res.end(JSON.stringify(data));
-  
-  const obj = {
-    "title": req.body.title,
-    "text": req.body.text,
-    "category": req.body.category,
-    "img": req.body.img
-  }
-  
-const { mydata, error } = await supabase
-.from('myTable')
-.insert([
- obj
-])
+  try {
+    const data = await controls.addData(
+      req.body.title,
+      req.body.text,
+      req.body.category,
+      req.body.img
+    );
+    res.end(JSON.stringify(data));
 
-  }catch(err)
-  {
+    const obj = {
+      title: req.body.title,
+      text: req.body.text,
+      category: req.body.category,
+      img: req.body.img,
+    };
+
+    const { mydata, error } = await supabase.from("myTable").insert([obj]);
+  } catch (err) {
     res.status(404);
     res.json({ Message: JSON.stringify(err) });
   }
-
-
-  
-
 });
 
 //delete an item
@@ -95,46 +81,39 @@ app.delete("/calvin/data/:id", async (req, res) => {
 
     //remove from supabase
     const { data, error } = await supabase
-  .from('myTable')
-  .delete()
-  .eq('id', id)
-  
+      .from("myTable")
+      .delete()
+      .eq("id", id);
   } catch (err) {
     res.status(404);
     res.json({ Message: JSON.stringify(err) });
   }
 });
 
-
 //update an item
-app.put("/calvin/data/:id", async (req, res) => {
-  
+app.patch("/calvin/data/:id", async (req, res) => {
   //res.writeHead(200, { "Content-Type": "Application/json" });
-  try 
-  {
-  const id = req.url.split("/")[3];
-  const title = req.body.title;
-  const text = req.body.text;
-  const category = req.body.category;
-  const img = req.body.img
+  try {
+    const id = req.url.split("/")[3];
+    const title = req.body.title;
+    const text = req.body.text;
+    const category = req.body.category;
+    const img = req.body.img;
 
-  var obj  = {title, title, text, category, img}
-  var _data = await controls.updateItem(id,title, text,category, img);
- 
-  //update from database
-  const { data, error } = await supabase
-  .from('myTable')
-  .update(JSON.stringify(obj))
-  .eq("id", id)
-  
-  res.end(JSON.stringify(_data));
+    var obj = { title, text, category, img };
+    var _data = await controls.updateItem(id, title, text, category, img);
 
-  } catch(err)
-  {
+    //update from database
+    const { data, error } = await supabase
+      .from("myTable")
+      .update({ title, text, category, img })
+      .eq("id", id);
+
+    res.end(JSON.stringify(_data));
+  } catch (err) {
     res.status(404);
     res.json({ Message: JSON.stringify(err) });
   }
-
 });
 
 //run on PORT 5000

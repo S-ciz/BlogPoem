@@ -5,6 +5,7 @@
 
 }
 
+
 body{
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -226,7 +227,7 @@ label
 
 #work aside.details .d-img img 
 {
-    
+    filter: brightness(.7);
     width: 50px;
     object-fit: cover;
     border-radius: .5rem;
