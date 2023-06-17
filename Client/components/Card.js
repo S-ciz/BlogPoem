@@ -64,7 +64,7 @@ button:hover{
 {
     .card 
     {
-        width: 100%;
+        width: 150px;
         height: 200px;
         object-fit:cover;
     }
