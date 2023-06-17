@@ -363,7 +363,6 @@ ul.menu:hover {
   .card-project {
     display: grid;
     place-items:center;
-    padding:1rem 0;
     gap: 1rem;
     width: 100%;
   }
