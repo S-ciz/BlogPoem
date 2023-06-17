@@ -71,7 +71,7 @@ button:hover{
     .card img 
     {
         width: 150px;
-        height:100px;
+        height:120px;
         object-fit:cover;
     
     }
