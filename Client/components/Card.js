@@ -81,7 +81,7 @@ button:hover{
     } 
     .card h3 
      {  
-     font-size: 10px;
+     font-size: 13px;
      }
 }
 
