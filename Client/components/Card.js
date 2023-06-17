@@ -65,13 +65,13 @@ button:hover{
     .card 
     {
         width: 100%;
-        height: 300px;
+        height: 200px;
         object-fit:cover;
     }
     .card img 
     {
         width:100%;
-        height:200px;
+        height:100px;
         object-fit:cover;
     
     }
