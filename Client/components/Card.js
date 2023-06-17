@@ -61,24 +61,28 @@ button:hover{
 }
 
 @media (max-width:600px)
-{
+{ 
     .card 
     {
         width: 150px;
-        height: 200px;
+        height: 150px;
         object-fit:cover;
     }
     .card img 
     {
-        width:100%;
-        height:100px;
+        width: 150px;
+        height:75px;
         object-fit:cover;
     
     }
     .card small 
     {
       display:none;
-    }
+    } 
+    .card h3 
+     {  
+     font-size: 10px;
+     }
 }
 
 
