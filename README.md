@@ -1,4 +1,4 @@
-# A Beautiful fullstack Blog and Poem application with node.js, html, css and vanilla javascript
+# A Beautiful fullstack Blog and Poem application with node.js, express, supabase, html, css and vanilla javascript
 
 # Home Page - Welcome
 ![wall](https://github.com/S-ciz/BlogPoem/assets/95995178/53f15b93-4983-4747-92be-6028d5340b86)
