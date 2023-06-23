@@ -1,4 +1,6 @@
-# BlogPoem Home page
+# A Beautiful fullstack Blog and Poem application with node.js, html, css and vanilla javascript
+
+# Home Page - Welcome
 ![wall](https://github.com/S-ciz/BlogPoem/assets/95995178/53f15b93-4983-4747-92be-6028d5340b86)
 # Front cover
 ![face](https://github.com/S-ciz/BlogPoem/assets/95995178/b1bb83e6-9b77-41ff-9458-94f210d6ad12)
