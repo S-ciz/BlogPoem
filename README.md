@@ -15,9 +15,4 @@
 # Text Editor
 ![texteditor](https://github.com/S-ciz/BlogPoem/assets/95995178/403d33b3-7986-4418-b4c1-5b115983fd7f) 
 
-# secondary Editor
-![editor](https://github.com/S-ciz/BlogPoem/assets/95995178/87677ffb-fb86-4d5b-aeed-fadf243ee02d)
-
-# Cards Mobile 
-![cards](https://github.com/S-ciz/BlogPoem/assets/95995178/d0051440-6af0-4b06-858e-884953fdf97a)
 
