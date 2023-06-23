@@ -3,7 +3,7 @@
 # Home Page - Welcome
 ![wall](https://github.com/S-ciz/BlogPoem/assets/95995178/53f15b93-4983-4747-92be-6028d5340b86)
 # Front cover
-![face](https://github.com/S-ciz/BlogPoem/assets/95995178/b1bb83e6-9b77-41ff-9458-94f210d6ad12)
+![image](https://github.com/S-ciz/BlogPoem/assets/95995178/ee65e89d-4a27-4d62-b72f-f33e56fd33a9) 
 
 # Poems 
 ![poem](https://github.com/S-ciz/BlogPoem/assets/95995178/b5e68806-6258-4ff1-991f-f36fc34d8624)
